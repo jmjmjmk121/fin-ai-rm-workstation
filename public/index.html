@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="description" content="FIN AI RM Cockpit - เวิร์กโฟลว์ดูแลลูกค้าจากเป้าหมายและหลักฐานกองทุนไทย">
+  <title>FIN AI | RM Cockpit</title>
+  <link rel="stylesheet" href="./app.css">
+  <link rel="stylesheet" href="./cockpit-v3.css">
+</head>
+<body class="v3-body">
+  <header class="topbar v3-topbar">
+    <div class="brand" aria-label="FIN AI RM Cockpit">
+      <span class="brand-mark">FA</span>
+      <span><strong>FIN AI</strong><small>โต๊ะงานดูแลลูกค้าสำหรับ RM</small></span>
+    </div>
+
+    <label class="command-search" for="globalSearch">
+      <span aria-hidden="true">⌕</span>
+      <input id="globalSearch" type="search" autocomplete="off" placeholder="ค้นหาลูกค้า เป้าหมาย กองทุน หรือเลขอ้างอิงงาน">
+      <kbd>⌘ K</kbd>
+    </label>
+
+    <div class="top-actions">
+      <button class="data-chip is-demo" id="dataStatusButton" type="button">
+        <span class="status-dot"></span><span id="dataStatusText">ข้อมูลสาธิต</span>
+      </button>
+      <div class="rm-switcher">
+        <button class="rm-profile" id="rmProfileButton" type="button" data-rm-profile-toggle aria-haspopup="listbox" aria-expanded="false">
+          <span id="activeRmInitial">พ</span><div><strong id="activeRmName">คุณพลอย</strong><small id="activeRmRole">RM · มุมมองข้อมูลสาธิต</small></div><i aria-hidden="true">⌄</i>
+        </button>
+        <div class="rm-switcher-menu" id="rmSwitcherMenu" role="listbox" aria-label="สลับมุมมอง RM สาธิต" hidden></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav v3-nav" aria-label="เมนูหลัก">
+    <button class="nav-item is-active" type="button" data-view="today">วันนี้ <span id="todayBadge">0</span></button>
+    <button class="nav-item" type="button" data-view="clients">ลูกค้า</button>
+    <button class="nav-item" type="button" data-view="goals">เป้าหมาย</button>
+    <button class="nav-item" type="button" data-view="portfolios">พอร์ตและการจัดสรร</button>
+    <button class="nav-item" type="button" data-view="market">เหตุการณ์ตลาด</button>
+    <button class="nav-item" type="button" data-view="queue">คิวและการส่งต่อ <span id="handoffBadge">0</span></button>
+    <button class="nav-item" type="button" data-view="audit">ตรวจสอบย้อนหลัง</button>
+  </nav>
+
+  <main class="app-shell v3-shell" id="appRoot" aria-live="polite">
+    <section class="loading-panel" aria-label="กำลังเตรียมโต๊ะงาน">
+      <span class="loading-mark"></span>
+      <div><strong>กำลังเตรียม 5 นาทีแรกของวันนี้</strong><p>ตรวจข้อมูล เป้าหมาย และคิวที่ควรได้รับการดูแลก่อน</p></div>
+    </section>
+  </main>
+
+  <div class="search-popover" id="searchPopover" hidden></div>
+
+  <div class="case-overlay" id="caseOverlay" aria-hidden="true">
+    <section class="case-workspace" role="dialog" aria-modal="true" aria-labelledby="caseTitle">
+      <header class="case-header" id="caseHeader"></header>
+      <nav class="case-steps" id="caseSteps" aria-label="ขั้นตอนจัดการเคส"></nav>
+      <div class="case-body" id="caseBody"></div>
+      <footer class="case-footer" id="caseFooter"></footer>
+    </section>
+  </div>
+
+  <div class="side-overlay" id="sideOverlay" aria-hidden="true">
+    <aside class="side-panel" role="dialog" aria-modal="true" aria-labelledby="sideTitle">
+      <header><div><p class="eyebrow" id="sideEyebrow"></p><h2 id="sideTitle"></h2></div><button type="button" class="icon-button" data-close-side aria-label="ปิด">×</button></header>
+      <div id="sideBody" class="side-body"></div>
+    </aside>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="./cockpit-v3.js" defer></script>
+</body>
+</html>

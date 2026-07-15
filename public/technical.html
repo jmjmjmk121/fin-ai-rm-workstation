@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>FIN-AI | Presenter Technical Appendix</title>
+  <link rel="stylesheet" href="./technical.css">
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <p>Presenter appendix · ไม่ใช่หน้าจอของ RM</p>
+      <h1>หลักฐานเชิง Quant และข้อจำกัดของกรณีศึกษา</h1>
+      <span>ใช้ตอบคำถามระหว่างนำเสนอ โดยไม่เพิ่มศัพท์เทคนิคใน workflow ของ RM</span>
+    </header>
+
+    <section class="card warning">
+      <strong>อ่านกราฟให้ถูกก่อน</strong>
+      <p>เส้นสีส้มเป็น efficient frontier ภายใต้ข้อจำกัดที่ประกาศเพียง long-only และน้ำหนักรวม 100% จึงเป็น analytical reference ไม่ใช่พอร์ตที่องค์กรอนุมัติ กรอบพอร์ตสาธิตอาจไม่อยู่บนเส้น เพราะการใช้งานจริงยังมี product shelf, concentration, liquidity, suitability, fees และ governance constraints ซึ่งต้องยืนยันก่อน pilot</p>
+    </section>
+
+    <section class="card">
+      <div class="section-head"><div><p>Exact constrained optimization</p><h2>Efficient Frontier</h2></div><label>ลูกค้าสาธิต <select id="clientSelect"><option value="C-4124">C-4124 · เป้าการศึกษาบุตร</option><option value="C-1048">C-1048 · Whole-wealth</option><option value="C-2012">C-2012 · Market message</option></select></label></div>
+      <canvas id="frontierChart" aria-label="Efficient Frontier annual expected return versus annual volatility"></canvas>
+      <div class="legend" aria-label="คำอธิบายกราฟ">
+        <span class="cloud">พอร์ตสุ่มที่เป็นไปได้</span><span class="frontier">Efficient frontier</span><span class="models">โมเดลพื้นฐานสาธิต</span><span class="current">พอร์ตปัจจุบัน</span><span class="case-model">กรอบหลายเป้าหมายสาธิต</span>
+      </div>
+      <div id="frontierFacts" class="facts"></div>
+    </section>
+
+    <section class="two-col">
+      <article class="card">
+        <p class="kicker">Portfolio mathematics</p><h2>สมการเชื่อมกันอย่างไร</h2>
+        <ol>
+          <li><b>ผลตอบแทนพอร์ต:</b> E[Rₚ] = wᵀμ</li>
+          <li><b>ความแปรปรวน:</b> Var(Rₚ) = wᵀΣw</li>
+          <li><b>Frontier:</b> ลด wᵀΣw ภายใต้ wᵀμ = r*, 1ᵀw = 1 และ w ≥ 0</li>
+          <li><b>Stress:</b> ผลกระทบทันที = wᵀs และขาดทุนเงินบาท = AUM × max(0, −wᵀs)</li>
+          <li><b>Goal paths:</b> ใช้เงินใน goal bucket, เงินเติมต่อปี, μ และ Σ ชุดเดียวกัน แล้วจำลองรายเดือน 5,000 เส้นทาง</li>
+        </ol>
+      </article>
+      <article class="card">
+        <p class="kicker">Model boundaries</p><h2>สิ่งที่โมเดลนี้ไม่กล่าวเกินจริง</h2>
+        <ul>
+          <li>Scenario shock คือเหตุการณ์รุนแรงแบบมีเงื่อนไข; lognormal projection หลังเหตุการณ์ไม่ใช่ fat-tail distribution</li>
+          <li>P5–P95 คือช่วงผลลัพธ์กึ่งกลาง 90% ไม่ใช่ confidence interval ของค่าประมาณ</li>
+          <li>SET SMART close ใช้เป็น market proxy ไม่ใช่ NAV ของกองทุนรวม</li>
+          <li>LLM เรียกเครื่องมือคำนวณและร่างภาษา แต่เลขมาจาก deterministic quant engine ที่ตรวจซ้ำได้</li>
+          <li>ไม่มี auto-send หรือ auto-trade; ลูกค้า, RM และ maker-checker ยังอยู่ในวงอนุมัติ</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+  <script src="./technical.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "fin-ai-rm-workbench",
+  "version": "3.0.0",
+  "description": "FIN AI RM Cockpit v3: a Thai-first, goal-based mutual-fund decision workflow with governed calculations, human review, and historical replay.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js",
+    "test:v3": "node --test test/*-v3.test.js",
+    "check": "node --check server.js && node --check public/cockpit-v3.js && node --test test/*.test.js",
+    "regen": "node tools/export-demo.js"
+  },
+  "keywords": ["fintech", "wealth-management", "relationship-manager", "suitability", "goal-based-investing", "portfolio", "ai-copilot", "cfa"],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
+}
